@@ -1,5 +1,5 @@
 # Benchmark Parallel
-Simple Benchmark template
+For test parallel implementations
 
 # Require
 C++ 17
