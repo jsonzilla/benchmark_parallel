@@ -25,18 +25,22 @@ void work(int index)
 typedef void (*FNPTR) (int i);
 FNPTR Func = work;
 
+//------------------------------------------------------------
+
 // CONCURRECY PPL
-static void BM_MultiThreaded(benchmark::State& state) {
+static void BM_PPL(benchmark::State& state) {
     if (state.thread_index == 0) {}
     for (auto _ : state) {        
         Concurrency::parallel_for(0, SIZE_OF_ARRAY, Func);
     }
     if (state.thread_index == 0) {}
 }
-BENCHMARK(BM_MultiThreaded)->Range(8, 8 << 10)->UseRealTime();
+BENCHMARK(BM_PPL)->Range(8, 8 << 10)->UseRealTime();
+
+//------------------------------------------------------------
 
 // OPENMP
-static void BM_MultiThreadedOmp(benchmark::State& state) {
+static void BM_Omp(benchmark::State& state) {
     if (state.thread_index == 0) {}
     for (auto _ : state) {
         #pragma omp parallel for
@@ -46,10 +50,12 @@ static void BM_MultiThreadedOmp(benchmark::State& state) {
     }
     if (state.thread_index == 0) {}
 }
-BENCHMARK(BM_MultiThreadedOmp)->Range(8, 8 << 10)->UseRealTime();
+BENCHMARK(BM_Omp)->Range(8, 8 << 10)->UseRealTime();
+
+//------------------------------------------------------------
 
 // INTEL TBB
-static void BM_MultiThreadedIntel(benchmark::State& state) {
+static void BM_IntelTBB(benchmark::State& state) {
     if (state.thread_index == 0) {}
     for (auto _ : state) {
         tbb::parallel_for(0, SIZE_OF_ARRAY, 1, Func, tbb::auto_partitioner());
@@ -57,10 +63,12 @@ static void BM_MultiThreadedIntel(benchmark::State& state) {
     if (state.thread_index == 0) {}
 }
 
-BENCHMARK(BM_MultiThreadedIntel)->Range(8, 8 << 10)->UseRealTime();
+BENCHMARK(BM_IntelTBB)->Range(8, 8 << 10)->UseRealTime();
+
+//------------------------------------------------------------
 
 // Single
-static void BM_MultiThreadedSingle(benchmark::State& state) {
+static void Single(benchmark::State& state) {
     std::vector<int> v(SIZE_OF_ARRAY);
     std::generate(v.begin(), v.end(), DIY::f);
     if (state.thread_index == 0) {}
@@ -70,19 +78,23 @@ static void BM_MultiThreadedSingle(benchmark::State& state) {
     if (state.thread_index == 0) {}
 }
 
-BENCHMARK(BM_MultiThreadedSingle)->Range(8, 8 << 10)->UseRealTime();
+BENCHMARK(Single)->Range(8, 8 << 10)->UseRealTime();
 
-//// DIY
-//static void BM_MultiThreadedDIY(benchmark::State& state) {
-//    std::vector<int> v(SIZE_OF_ARRAY);
-//    std::generate(v.begin(), v.end(), DIY::f);
-//    if (state.thread_index == 0) {}
-//    for (auto _ : state) {
-//        DIY::parallel_for_each(v.begin(), v.end(), Func);
-//    }
-//    if (state.thread_index == 0) {}
-//}
-//
-//BENCHMARK(BM_MultiThreadedDIY)->Range(8, 8 << 10)->UseRealTime();
+//------------------------------------------------------------
+
+// DIY
+static void BM_DIY(benchmark::State& state) {
+    std::vector<int> v(SIZE_OF_ARRAY);
+    std::generate(v.begin(), v.end(), DIY::f);
+    if (state.thread_index == 0) {}
+    for (auto _ : state) {
+        DIY::parallel_for_each(v.begin(), v.end(), Func);
+    }
+    if (state.thread_index == 0) {}
+}
+
+BENCHMARK(BM_DIY)->Range(8, 8 << 10)->UseRealTime();
+
+//------------------------------------------------------------
 
 BENCHMARK_MAIN();
