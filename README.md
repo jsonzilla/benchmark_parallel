@@ -22,14 +22,14 @@ Build benchmark Release and Debug
 cd benchmark
 mkdir build
 cd build
-cmake -G "Visual Studio 16 2019" ..
+cmake -G "Visual Studio 16 2019" -DCMAKE_BUILD_TYPE=Release ..
 ```
 
 # Build
 ```
 mkdir build
 cd build 
-cmake -G "Visual Studio 16 2019" ..
+cmake -G "Visual Studio 16 2019" -DCMAKE_BUILD_TYPE=Release  ..
 ```
 
 # Result
