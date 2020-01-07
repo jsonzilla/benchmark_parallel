@@ -10,7 +10,7 @@
 
 // PREAMBULO
 const int WORK = 2;
-const int SIZE_OF_ARRAY = 1000;
+const int SIZE_OF_ARRAY = 10000000;
 
 __declspec(noinline)
 void work(int index)
@@ -27,7 +27,7 @@ FNPTR Func = work;
 
 //------------------------------------------------------------
 
-// CONCURRECY PPL
+ //CONCURRECY PPL
 static void BM_PPL(benchmark::State& state) {
     if (state.thread_index == 0) {}
     for (auto _ : state) {        
@@ -82,18 +82,18 @@ BENCHMARK(Single)->Range(8, 8 << 10)->UseRealTime();
 
 //------------------------------------------------------------
 
-// DIY
-static void BM_DIY(benchmark::State& state) {
-    std::vector<int> v(SIZE_OF_ARRAY);
-    std::generate(v.begin(), v.end(), DIY::f);
-    if (state.thread_index == 0) {}
-    for (auto _ : state) {
-        DIY::parallel_for_each(v.begin(), v.end(), Func);
-    }
-    if (state.thread_index == 0) {}
-}
-
-BENCHMARK(BM_DIY)->Range(8, 8 << 10)->UseRealTime();
+ //DIY
+//static void BM_DIY(benchmark::State& state) {
+//    std::vector<int> v(SIZE_OF_ARRAY);
+//    std::generate(v.begin(), v.end(), DIY::f);
+//    if (state.thread_index == 0) {}
+//    for (auto _ : state) {
+//        DIY::parallel_for_each(v.begin(), v.end(), Func);
+//    }
+//    if (state.thread_index == 0) {}
+//}
+//
+//BENCHMARK(BM_DIY)->Range(8, 8 << 10)->UseRealTime();
 
 //------------------------------------------------------------
 

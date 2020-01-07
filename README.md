@@ -34,34 +34,34 @@ cmake -G "Visual Studio 16 2019" -DCMAKE_BUILD_TYPE=Release  ..
 
 # Result
 ```
-Run on (12 X 2592 MHz CPU s)
+Run on (8 X 4008 MHz CPU s)
 CPU Caches:
-  L1 Data 32 KiB (x6)
-  L1 Instruction 32 KiB (x6)
-  L2 Unified 256 KiB (x6)
-  L3 Unified 12288 KiB (x1)
---------------------------------------------------------------------------------
-Benchmark                                      Time             CPU   Iterations
---------------------------------------------------------------------------------
-BM_MultiThreaded/8/real_time                5480 ns         5325 ns       132040
-BM_MultiThreaded/64/real_time               5356 ns         5107 ns       128512
-BM_MultiThreaded/512/real_time              5264 ns         5172 ns       132917
-BM_MultiThreaded/4096/real_time             5312 ns         5287 ns       130036
-BM_MultiThreaded/8192/real_time             5261 ns         5191 ns       132447
-BM_MultiThreadedOmp/8/real_time             1252 ns         1254 ns       560649
-BM_MultiThreadedOmp/64/real_time            1231 ns         1231 ns       558508
-BM_MultiThreadedOmp/512/real_time           1243 ns         1250 ns       562353
-BM_MultiThreadedOmp/4096/real_time          1229 ns         1229 ns       559525
-BM_MultiThreadedOmp/8192/real_time          1239 ns         1228 ns       560019
-BM_MultiThreadedIntel/8/real_time           6841 ns         6817 ns       103149
-BM_MultiThreadedIntel/64/real_time          6834 ns         6796 ns       101166
-BM_MultiThreadedIntel/512/real_time         6828 ns         6788 ns        98974
-BM_MultiThreadedIntel/4096/real_time        6851 ns         6848 ns       100392
-BM_MultiThreadedIntel/8192/real_time        6828 ns         6857 ns       100266
-BM_MultiThreadedSingle/8/real_time          1236 ns         1235 ns       569509
-BM_MultiThreadedSingle/64/real_time         1247 ns         1223 ns       575025
-BM_MultiThreadedSingle/512/real_time        1244 ns         1259 ns       570845
-BM_MultiThreadedSingle/4096/real_time       1246 ns         1234 ns       569898
-BM_MultiThreadedSingle/8192/real_time       1232 ns         1236 ns       568712
+  L1 Data 32 KiB (x4)
+  L1 Instruction 32 KiB (x4)
+  L2 Unified 256 KiB (x4)
+  L3 Unified 8192 KiB (x1)
+---------------------------------------------------------------------
+Benchmark                           Time             CPU   Iterations
+---------------------------------------------------------------------
+BM_PPL/8/real_time            5692676 ns      4954268 ns          123
+BM_PPL/64/real_time           5697408 ns      4662298 ns          124
+BM_PPL/512/real_time          5633770 ns      4827236 ns          123
+BM_PPL/4096/real_time         5650274 ns      4836310 ns          126
+BM_PPL/8192/real_time         5681578 ns      4625000 ns          125
+BM_Omp/8/real_time            4887061 ns      4357993 ns          147
+BM_Omp/64/real_time           4861163 ns      4231771 ns          144
+BM_Omp/512/real_time          4870495 ns      4202586 ns          145
+BM_Omp/4096/real_time         4828306 ns      3521127 ns          142
+BM_Omp/8192/real_time         4798615 ns      4370629 ns          143
+BM_IntelTBB/8/real_time       3014235 ns      2933952 ns          229
+BM_IntelTBB/64/real_time      3021075 ns      2938034 ns          234
+BM_IntelTBB/512/real_time     3035308 ns      3017704 ns          233
+BM_IntelTBB/4096/real_time    2976463 ns      3019958 ns          238
+BM_IntelTBB/8192/real_time    2964752 ns      2925532 ns          235
+Single/8/real_time           15912009 ns     15980114 ns           44
+Single/64/real_time          15887070 ns     15980114 ns           44
+Single/512/real_time         15891355 ns     15980114 ns           44
+Single/4096/real_time        15886977 ns     15625000 ns           44
+Single/8192/real_time        15949252 ns     15980114 ns           44
 
 ```

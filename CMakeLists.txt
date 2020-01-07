@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.0)
 project(simple_benchmark_template)
 set(CMAKE_CXX_STANDARD 14)
-set(OpenMP_CXX_FLAGS "-Xclang -fopenmp")
+set(OpenMP_CXX_FLAGS "-Xclang -openmp -Qpar")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${OpenMP_CXX_FLAGS}")
 
 set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake_modules" ${CMAKE_MODULE_PATH})
